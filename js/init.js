@@ -24,32 +24,38 @@ window.onload = function() {
   // checks
   var checks = function() {
     if ( document.cookie ) {
-      var cookieString = document.cookie;
-      var cookieArray = cookieString.split("; ");
-      for ( var i in cookieArray ) {
-        var item = cookieArray[ i ];
-        var itemArray = item.split( "=" );
-        for ( var n in itemArray ) {
-          if ( Math.abs( n % 2 ) == 1 ) {
-            console.log( "cookie Value:", value = itemArray[ n ] );
-          } else {
-            console.log( "cookie Key:", value = itemArray[ n ] );
+      console.log( "Cookies are present" );
+      if ( localStorage.length == 0 ) {
+        var cookieString = document.cookie;
+        var cookieArray = cookieString.split( "; " );
+        for ( var i in cookieArray ) {
+          var item = cookieArray[ i ];
+          var itemArray = item.split( "=" );
+          for ( var n in itemArray ) {
+            if ( Math.abs( n % 2 ) == 1 ) {
+              var localStorageValue = itemArray[ n ];
+            } else {
+              var localStorageKey = itemArray[ n ];
+            }
           }
+          localStorage.setItem( localStorageKey, localStorageValue );
         }
+        console.log( "Created localStorage items from cookies" );
       }
     } else {
-      console.log( "there are no cookie items" );
+      console.log( "There are no cookie items" );
     }
 
     if ( localStorage.length > 0 ) {
+      console.log( "localStorage items are present" );
       if ( !document.cookie ) {
-        var localStorageString = JSON.stringify(localStorage)
-        .replace(/{/g, "")
-        .replace(/}/g, "")
-        .replace(/"/g, "");
-        var localStorageArray = localStorageString.split(",");
+        var localStorageString = JSON.stringify( localStorage )
+        .replace( /{/g, "" )
+        .replace( /}/g, "" )
+        .replace( /"/g, "" );
+        var localStorageArray = localStorageString.split( "," );
         for ( key in localStorageArray ) {
-          var localStorageItem = (localStorageArray[ key ].split(":"));
+          var localStorageItem = (localStorageArray[ key ].split( ":" ));
           for ( var n in localStorageItem ) {
             if ( Math.abs( n % 2 ) == 1 ) {
               var cookieValue = localStorageItem[ n ];
@@ -59,22 +65,23 @@ window.onload = function() {
           }
           document.cookie = "\"" + cookieKey + "=" + cookieValue + expires + "\"";
         }
+        console.log( "Created cookie items from localStorage" );
       }
     } else {
-      console.log( "there are no localStorage items" );
+      console.log( "There are no localStorage items" );
     }
   }();
 
   // functions used multiple times
   var storeCookie = function() {
-    console.log("store cookie");
+    console.log("Store cookie");
     document.cookie = "name=" + name + expires;
     document.cookie = "age=" + age + expires;
     document.cookie = "faveFood=" + faveFood + expires;
   };
 
   var storeLocal = function() {
-    console.log( "store localStorage" );
+    console.log( "Store localStorage" );
     localStorage.setItem( "name", name );
     localStorage.setItem( "age", age );
     localStorage.setItem( "faveFood", faveFood );
