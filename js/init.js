@@ -21,10 +21,38 @@ window.onload = function() {
   var expires = "; expires=Sun, 31 Dec 2017 12:00:00 UTC";
   var destroy = "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 
+  // checks
+  var checks = function() {
+    if ( document.cookie ) {
+      var cookieString = document.cookie;
+      var cookieArray = cookieString.split("; ");
+      for ( var i in cookieArray ) {
+        var item = cookieArray[ i ];
+        var itemArray = item.split( "=" );
+        for ( var n in itemArray ) {
+          if ( Math.abs( n % 2 ) == 1 ) {
+            console.log( "Value:", value = itemArray[ n ] );
+          } else {
+            console.log( "Key:", value = itemArray[ n ] );
+          }
+        }
+      }
+    } else {
+      console.log( "there are no cookies" );
+    }
+    for ( var key in localStorage ) {
+      if ( localStorage[ key ] !== null ) {
+        console.log( localStorage[ key ] );
+      } else {
+        console.log("there are no localStorage items");
+      }
+    }
+  }();
+
   // functions used multiple times
   var storeCookie = function() {
     console.log("store cookie");
-    document.cookie = "username=" + name + expires;
+    document.cookie = "name=" + name + expires;
     document.cookie = "age=" + age + expires;
     document.cookie = "faveFood=" + faveFood + expires;
   };
