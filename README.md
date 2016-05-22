@@ -9,3 +9,5 @@ It was built on a lazy sofa Sunday so probably doesn't work on all browser/platf
 If you're thinking of implementing Crumbs on your own site then perhaps you should think carefully at which point you do so. I would certainly only write the initial cookies after the user had clicked to accept. Then this cookie/localStorage Frankenscript wouldn't feel quite so evil. Use your own discretion.
 ## Notes
 After I started work on this project I realised that it's so obvious that someone must have already implemented it in the wild. That's when I discovered everCookie. It's not quite the same thing but it's got elements of the same sort of thinking.
+## License
+MIT
