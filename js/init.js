@@ -40,12 +40,17 @@ window.onload = function() {
     } else {
       console.log( "there are no cookies" );
     }
-    for ( var key in localStorage ) {
-      if ( localStorage[ key ] !== null ) {
-        console.log( localStorage[ key ] );
-      } else {
-        console.log("there are no localStorage items");
+
+    if ( localStorage.length > 0 ) {
+      for ( var key in localStorage ) {
+        if ( localStorage[ key ] ) {
+          console.log( localStorage[ key ] );
+        } else {
+          console.log( "there are no localStorage items" );
+        }
       }
+    } else {
+      console.log( "there are no localStorage items" );
     }
   }();
 
