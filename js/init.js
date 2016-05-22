@@ -16,14 +16,15 @@ window.onload = function() {
           faveFood = "Baked Beans",
           stored = true;
 
-      var cookie = document.cookie;
-      var cookieVals = cookie.split(",");
+        var expires = "; expires=Sun, 31 Dec 2017 12:00:00 UTC";
 
       // functions used multiple times
       var storeCookie = function() {
         console.log("store cookie");
-        // let's see if we can keep the cookie data in json format
-        document.cookie = app + "= {cookie:{name:" + name + "}, {age:" + age + "}, {faveFood:" + faveFood + "}}; expires=99983090";
+        document.cookie = "username=" + name + expires;
+        document.cookie = "age=" + age + expires;
+        document.cookie = "faveFood=" + faveFood + expires;
+
       };
 
       var storeLocal = function() {
@@ -34,7 +35,7 @@ window.onload = function() {
       };
 
       var consoleCookie = function( event ) {
-        console.log(cookie);
+        console.log(document.cookie);
       };
 
       var consoleLocal = function( event ) {
