@@ -31,9 +31,9 @@ window.onload = function() {
         var itemArray = item.split( "=" );
         for ( var n in itemArray ) {
           if ( Math.abs( n % 2 ) == 1 ) {
-            console.log( "Value:", value = itemArray[ n ] );
+            console.log( "cookie Value:", value = itemArray[ n ] );
           } else {
-            console.log( "Key:", value = itemArray[ n ] );
+            console.log( "cookie Key:", value = itemArray[ n ] );
           }
         }
       }
@@ -42,13 +42,27 @@ window.onload = function() {
     }
 
     if ( localStorage.length > 0 ) {
-      for ( var key in localStorage ) {
-        if ( localStorage[ key ] ) {
-          console.log( localStorage[ key ] );
-        } else {
-          console.log( "there are no localStorage items" );
+        // we're not going to use the standard iterative way of doing this as we need the key value pairs and not just the values
+        //  for ( var key in localStorage ) {
+        //  if ( localStorage[ key ] ) {
+        //    console.log( localStorage[ key ] );
+        //  }
+        // }
+        var localStorageString = JSON.stringify(localStorage)
+                                     .replace(/{/g, "")
+                                     .replace(/}/g, "")
+                                     .replace(/"/g, "");
+        var localStorageArray = localStorageString.split(",");
+        for ( key in localStorageArray ) {
+          var localStorageItem = (localStorageArray[ key ].split(":"));
+          for ( var n in localStorageItem ) {
+            if ( Math.abs( n % 2 ) == 1 ) {
+              console.log( "localStorage Value:", value = localStorageItem[ n ] );
+            } else {
+              console.log( "localStorage Key:", value = localStorageItem[ n ] );
+            }
+          }
         }
-      }
     } else {
       console.log( "there are no localStorage items" );
     }
