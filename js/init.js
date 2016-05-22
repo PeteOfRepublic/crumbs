@@ -17,6 +17,7 @@ window.onload = function() {
           stored = true;
 
         var expires = "; expires=Sun, 31 Dec 2017 12:00:00 UTC";
+        var destroy = "; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 
       // functions used multiple times
       var storeCookie = function() {
@@ -24,7 +25,6 @@ window.onload = function() {
         document.cookie = "username=" + name + expires;
         document.cookie = "age=" + age + expires;
         document.cookie = "faveFood=" + faveFood + expires;
-
       };
 
       var storeLocal = function() {
@@ -44,7 +44,9 @@ window.onload = function() {
 
       var unstoreCookie = function() {
         console.log( "unstore cookie" );
-        document.cookie = "expires=0";
+        document.cookie = "username=" + destroy;
+        document.cookie = "age=" + destroy;
+        document.cookie = "faveFood=" + destroy;
       };
 
       var unstoreLocal = function() {
