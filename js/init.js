@@ -42,21 +42,24 @@ window.onload = function() {
     }
 
     if ( localStorage.length > 0 ) {
+      if ( !document.cookie ) {
         var localStorageString = JSON.stringify(localStorage)
-                                     .replace(/{/g, "")
-                                     .replace(/}/g, "")
-                                     .replace(/"/g, "");
+        .replace(/{/g, "")
+        .replace(/}/g, "")
+        .replace(/"/g, "");
         var localStorageArray = localStorageString.split(",");
         for ( key in localStorageArray ) {
           var localStorageItem = (localStorageArray[ key ].split(":"));
           for ( var n in localStorageItem ) {
             if ( Math.abs( n % 2 ) == 1 ) {
-              console.log( "localStorage Value:", value = localStorageItem[ n ] );
+              var cookieValue = localStorageItem[ n ];
             } else {
-              console.log( "localStorage Key:", value = localStorageItem[ n ] );
+              var cookieKey = localStorageItem[ n ];
             }
           }
+          document.cookie = "\"" + cookieKey + "=" + cookieValue + expires + "\"";
         }
+      }
     } else {
       console.log( "there are no localStorage items" );
     }
