@@ -38,16 +38,10 @@ window.onload = function() {
         }
       }
     } else {
-      console.log( "there are no cookies" );
+      console.log( "there are no cookie items" );
     }
 
     if ( localStorage.length > 0 ) {
-        // we're not going to use the standard iterative way of doing this as we need the key value pairs and not just the values
-        //  for ( var key in localStorage ) {
-        //  if ( localStorage[ key ] ) {
-        //    console.log( localStorage[ key ] );
-        //  }
-        // }
         var localStorageString = JSON.stringify(localStorage)
                                      .replace(/{/g, "")
                                      .replace(/}/g, "")
@@ -93,7 +87,7 @@ window.onload = function() {
 
   var unstoreCookie = function() {
     console.log( "unstore cookie" );
-    document.cookie = "username=" + destroy;
+    document.cookie = "name=" + destroy;
     document.cookie = "age=" + destroy;
     document.cookie = "faveFood=" + destroy;
   };
